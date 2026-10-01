@@ -2,8 +2,8 @@ package com.example.newsapp.domain.model
 
 internal data class NewsItem(
     val uniqId: String,
-    val author: String,
-    val content: String,
+    val author: String?,
+    val content: String?,
     val description: String,
     val publishedAt: String,
     val source: Source,

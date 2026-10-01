@@ -7,10 +7,10 @@ import kotlinx.serialization.Serializable
 internal data class NewsItemDto(
 
     @SerialName("author")
-    val author: String,
+    val author: String?,
 
     @SerialName("content")
-    val content: String,
+    val content: String?,
 
     @SerialName("description")
     val description: String,

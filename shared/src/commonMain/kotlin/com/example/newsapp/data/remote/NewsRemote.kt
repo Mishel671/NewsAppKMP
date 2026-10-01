@@ -13,12 +13,14 @@ internal class NewsRemote(
     private val mapper: NewsMapper
 ) {
 
-    suspend fun getNewsList(page: Int): List<NewsItem>{
-        val response =  client.get(NewsEndpoints.TOP_HEADLINES){
-            parameters {
-                append("category", "technology")
-                append("pageSize", "20")
-                append("page", page.toString())
+    suspend fun getNewsList(page: Int): List<NewsItem> {
+        val response = client.get(NewsEndpoints.TOP_HEADLINES) {
+            url {
+                with(parameters) {
+                    append("category", "technology")
+                    append("pageSize", "20")
+                    append("page", page.toString())
+                }
             }
         }
         return mapper.map(response.body<NewsResponse>())

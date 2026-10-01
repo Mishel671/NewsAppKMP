@@ -1,4 +1,4 @@
-package com.example.newsapp.common
+package com.example.newsapp.common.platform
 
 import org.koin.dsl.module
 import io.ktor.client.engine.darwin.*

@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 internal data class SourceDto(
 
     @SerialName("id")
-    val id: String,
+    val id: String?,
 
     @SerialName("name")
     val name: String

@@ -1,4 +1,4 @@
-package com.example.newsapp.common
+package com.example.newsapp.common.platform
 
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.android.Android
