@@ -1,14 +1,13 @@
 package com.example.newsapp.presentation.newsList
 
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.newsapp.presentation.newsList.widget.NewsListContent
 import org.koin.core.Koin
 import org.koin.mp.KoinPlatform.getKoin
 
@@ -18,17 +17,23 @@ internal fun NewsListScreen(
     koin: Koin = getKoin(),
     viewModel: NewsListViewModel = viewModel { koin.get() }
 ) {
-    viewModel
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            modifier = Modifier.clickable {
-                navigateToDetail()
-            },
-            text = "list: ${viewModel.hashCode()}"
+    val state by viewModel.uiState.collectAsState()
+    val onAction: (NewsListScreenAction) -> Unit = remember { { viewModel.onAction(it) } }
+
+    MaterialTheme {
+        NewsListContent(
+            state = state,
+            onAction = onAction,
         )
     }
-}
 
+    LaunchedEffect(Unit) {
+        viewModel.sideEffects.collect {
+            when (it) {
+                is NewsListSideEffect.NavigateToDetail -> {
+                    navigateToDetail()
+                }
+            }
+        }
+    }
+}

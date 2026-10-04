@@ -1,4 +1,4 @@
-package com.example.newsapp.presentation.core.viewModel
+package com.example.newsapp.core.presentation.viewModel
 
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.properties.ReadOnlyProperty

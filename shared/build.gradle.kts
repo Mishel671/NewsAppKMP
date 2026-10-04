@@ -50,6 +50,7 @@ kotlin {
 
             implementation(libs.ktor.client.android)
             implementation(libs.ktor.client.negotiation)
+            implementation(libs.ktor.client.okhttp)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
         }
@@ -74,6 +75,8 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.core.viewmodel)
             implementation(libs.koin.compose.viewmodel)
+
+            implementation(libs.landscapist.coil)
         }
 
 

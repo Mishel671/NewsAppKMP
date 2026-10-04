@@ -32,7 +32,7 @@ fun initKoin(enableNetworkLogs: Boolean = true, appDeclaration: KoinAppDeclarati
         appDeclaration()
         modules(
             commonModule(enableNetworkLogs = enableNetworkLogs),
-            viewModelModule(),
+            newsFeatureModule(),
             platformModule()
         )
     }
@@ -40,19 +40,8 @@ fun initKoin(enableNetworkLogs: Boolean = true, appDeclaration: KoinAppDeclarati
 private fun commonModule(enableNetworkLogs: Boolean) = module {
     single { createJson() }
     single {  createHttpClient(get(), get(), enableNetworkLogs = enableNetworkLogs) }
-
     single { CoroutineScope(Dispatchers.Default + SupervisorJob()) }
 
-    single<NewsMapper> { NewsMapper() }
-    single<NewsRamCache> { NewsRamCache() }
-    single<NewsRemote> { NewsRemote(get(), get()) }
-    single<NewsRepository> { NewsRepositoryImpl(get(), get()) }
-}
-
-
-private fun viewModelModule() = module {
-    factoryOf(::NewsListViewModel)
-    factoryOf(::NewsDetailViewModel)
 }
 
 private fun createJson() = Json { isLenient = true; ignoreUnknownKeys = true }
@@ -67,7 +56,7 @@ private fun createHttpClient(
             protocol = URLProtocol.HTTPS
             // Вынести в local
             host = "newsapi.org"
-            parameters.append("apiKey","d30c039132104c7f9e98fdaf39bbaec2")
+            parameters.append("apiKey","")
         }
     }
     install(ContentNegotiation) {
