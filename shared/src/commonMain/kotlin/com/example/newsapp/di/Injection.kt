@@ -1,13 +1,6 @@
 package com.example.newsapp.di
 
 import com.example.newsapp.common.platform.platformModule
-import com.example.newsapp.data.NewsRepositoryImpl
-import com.example.newsapp.data.local.NewsRamCache
-import com.example.newsapp.data.remote.NewsRemote
-import com.example.newsapp.data.remote.mapper.NewsMapper
-import com.example.newsapp.domain.NewsRepository
-import com.example.newsapp.presentation.newsDetail.NewsDetailViewModel
-import com.example.newsapp.presentation.newsList.NewsListViewModel
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -18,12 +11,12 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
+import kmp_movie.composeApp.BuildConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.serialization.json.Json
 import org.koin.core.context.startKoin
-import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
@@ -54,9 +47,8 @@ private fun createHttpClient(
     defaultRequest {
         url {
             protocol = URLProtocol.HTTPS
-            // Вынести в local
             host = "newsapi.org"
-            parameters.append("apiKey","")
+            parameters.append("apiKey", BuildConfig.API_KEY)
         }
     }
     install(ContentNegotiation) {

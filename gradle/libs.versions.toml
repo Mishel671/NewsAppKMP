@@ -16,6 +16,7 @@ koin = "4.2.2"
 nativeCoroutine = "1.0.6"
 landScapist = "2.13.2"
 jetbrainsKotlinJvm = "2.4.20"
+build-config = "6.1.2"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -61,3 +62,4 @@ kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref =
 nativeCoroutine = {id = "com.rickclephas.kmp.nativecoroutines", version.ref= "nativeCoroutine"}
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
+build-config = { id = "com.github.gmazzo.buildconfig", version.ref = "build-config" }

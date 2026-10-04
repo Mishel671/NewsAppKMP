@@ -1,6 +1,7 @@
 import org.gradle.kotlin.dsl.android
 import org.gradle.kotlin.dsl.libs
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.konan.properties.Properties
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -9,6 +10,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.nativeCoroutine)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.build.config)
 }
 
 kotlin {
@@ -94,4 +96,24 @@ kotlin {
 
 dependencies {
     androidRuntimeClasspath(libs.compose.uiTooling)
+}
+
+buildConfig {
+    packageName("kmp_movie.composeApp")
+    val apiKey = loadLocalProperty("local.properties", "API_KEY")
+    buildConfigField("API_KEY", apiKey)
+}
+
+fun Project.loadLocalProperty(
+    path: String,
+    propertyName: String,
+): String {
+    val localProperties = Properties()
+    val localPropertiesFile = project.rootProject.file(path)
+    if (localPropertiesFile.exists()) {
+        localProperties.load(localPropertiesFile.inputStream())
+        return localProperties.getProperty(propertyName)
+    } else {
+        throw GradleException("can not find property : $propertyName")
+    }
 }
