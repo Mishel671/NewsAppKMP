@@ -1,24 +1,22 @@
-This is a Kotlin Multiplatform project targeting Android, iOS.
+# News App (Kotlin Multiplatform)
+News app built with Kotlin Multiplatform, supporting Android and iOS. The app
+follows the MVI architecture to ensure clean.
 
-* [/iosApp](./iosApp/iosApp) contains an iOS application. Even if you’re sharing your UI with Compose Multiplatform,
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Preview
+<p>
+<img src="./preview/ScreenRecordAndroid.gif" alt="Demo Android" width="360" height="808" >
+<span>&shy;</span>
+<img src="./preview/ScreenRecordiOS.gif" alt="Demo iOS" width="371" height="808">
+</p>
 
-* [/shared](./shared/src) is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - [commonMain](./shared/src/commonMain/kotlin) is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    the [iosMain](./shared/src/iosMain/kotlin) folder would be the right place for such calls.
-    Similarly, if you want to edit the Desktop (JVM) specific part, the [jvmMain](./shared/src/jvmMain/kotlin)
-    folder is the appropriate location.
+## Build
+- Generate a new key from [here](https://newsapi.org/docs/get-started)
+- Add a new entry in `local.properties` file:
 
-### Running the apps
+```properties
+# local.properties (already gitignored)
+sdk.dir=/Users/you/Library/Android/sdk
 
-Use the run configurations provided by the run widget in your IDE's toolbar. You can also use these commands and options:
-
-- Android app: `./gradlew :androidApp:assembleDebug`
-- iOS app: open the [/iosApp](./iosApp) directory in Xcode and run it from there.
-
----
-
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+# Your secrets
+API_KEY=your_api_key
+```
