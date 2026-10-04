@@ -4,4 +4,6 @@
     <string name="news_error_placeholder_title">Something went wrong</string>
     <string name="news_error_placeholder_button_refresh">Refresh</string>
     <string name="news_search_placeholder">Search</string>
+
+    <string name="news_detail_author">Author: %1$s</string>
 </resources>

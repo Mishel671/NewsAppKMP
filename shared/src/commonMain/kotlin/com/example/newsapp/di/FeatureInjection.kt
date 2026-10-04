@@ -7,6 +7,7 @@ import com.example.newsapp.data.remote.NewsRemote
 import com.example.newsapp.data.remote.mapper.NewsMapper
 import com.example.newsapp.domain.NewsRepository
 import com.example.newsapp.domain.model.NewsItem
+import com.example.newsapp.presentation.newsDetail.NewsDetailConverter
 import com.example.newsapp.presentation.newsDetail.NewsDetailViewModel
 import com.example.newsapp.presentation.newsList.NewListConverter
 import com.example.newsapp.presentation.newsList.NewsListViewModel
@@ -31,5 +32,6 @@ private fun Module.newsListModule() {
 }
 
 private fun Module.newsDetailModule() {
+    single<NewsDetailConverter> { NewsDetailConverter() }
     factoryOf(::NewsDetailViewModel)
 }

@@ -153,13 +153,12 @@ internal class NewsListViewModel(
     }
 
     private fun onItemClicked(id: String) {
-        viewModelScope.launch {
-            val item = _state.value.paginationState.items.find {
-                it.getKey() == id
-            }?.getContainedValue() ?: return@launch
-            repository.setNewsItemInRamCache(item)
-            _sideEffects.emit(NewsListSideEffect.NavigateToDetail)
-        }
+        val item = _state.value.paginationState.items.find {
+            it.getKey() == id
+        }?.getContainedValue() ?: return
+        repository.setNewsItemInRamCache(item)
+        _sideEffects.trySend(NewsListSideEffect.NavigateToDetail)
+
     }
 
     private enum class LoadType {

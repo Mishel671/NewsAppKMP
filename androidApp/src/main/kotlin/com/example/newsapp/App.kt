@@ -13,6 +13,7 @@ class App : Application() {
         super.onCreate()
         initKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
+            androidContext(this@App)
         }
     }
 }

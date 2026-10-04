@@ -62,7 +62,7 @@ internal fun NewsItemWidget(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             CoilImage(
-                modifier = modifier
+                modifier = Modifier
                     .size(96.dp)
                     .clip(MaterialTheme.shapes.medium)
                     .background(MaterialTheme.colorScheme.inverseOnSurface),
@@ -70,8 +70,6 @@ internal fun NewsItemWidget(
                 imageOptions = ImageOptions(
                     contentScale = ContentScale.Crop,
                     alignment = Alignment.Center,
-                    contentDescription = "Celebrity item",
-                    colorFilter = null,
                 ),
                 loading = {
                     Box(

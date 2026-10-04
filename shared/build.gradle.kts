@@ -71,6 +71,7 @@ kotlin {
             implementation(libs.ktor.json)
             implementation(libs.ktor.client.negotiation)
             implementation(libs.kotlinx.serialization.core)
+            implementation(libs.kotlin.datetime)
 
             implementation(libs.koin.core)
             implementation(libs.koin.core.viewmodel)

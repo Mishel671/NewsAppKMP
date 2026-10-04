@@ -2,11 +2,11 @@ package com.example.newsapp.presentation.newsList
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.newsapp.core.presentation.subscribeOnSideEffects
 import com.example.newsapp.presentation.newsList.widget.NewsListContent
 import org.koin.core.Koin
 import org.koin.mp.KoinPlatform.getKoin
@@ -27,12 +27,10 @@ internal fun NewsListScreen(
         )
     }
 
-    LaunchedEffect(Unit) {
-        viewModel.sideEffects.collect {
-            when (it) {
-                is NewsListSideEffect.NavigateToDetail -> {
-                    navigateToDetail()
-                }
+    viewModel.subscribeOnSideEffects {
+        when (it) {
+            is NewsListSideEffect.NavigateToDetail -> {
+                navigateToDetail()
             }
         }
     }

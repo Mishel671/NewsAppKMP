@@ -21,6 +21,8 @@ private fun NavGraphBuilder.newsListDestination(navController: NavHostController
 
 private fun NavGraphBuilder.newsDetailDestination(navController: NavHostController) {
     composable(NewsNavPath.NEWS_DETAIL) {
-        NewsDetailScreen()
+        NewsDetailScreen(
+            navigateBack = { navController.popBackStack() }
+        )
     }
 }
